@@ -3,12 +3,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import USNewsScreen from './screens/USNewsScreen';
-import WorldNewsScreen from './screens/WorldNewsScreen';
-import TechNewsScreen from './screens/TechNewsScreen';
-import BookmarkedNewsScreen from './screens/BookmarkedNewsScreen';
-import NewsDetailScreen from './screens/NewsDetailScreen';
-import Colors from './constants/Colors'
+import SoftwareGuidesScreen from './screens/SoftwareGuidesScreen';
+import HardwareGuidesScreen from './screens/HardwareGuidesScreen';
+import PurchaseGuidesScreen from './screens/PurchaseGuidesScreen';
+import BookmarkedGuidesScreen from './screens/BookmarkedGuidesScreen';
+import SubmitGuidesScreen from './screens/SubmitGuidesScreen'
+import GuidesDetailScreen from './screens/GuidesDetailScreen';
+import Colors from './constants/Colors';
 import BookmarksContextProvider from './store/context/bookmarks-context';
 
 const Stack = createNativeStackNavigator();
@@ -23,9 +24,9 @@ function TabNavigator() {
       headerTintColor: Colors.primary300,
       headerTitleStyle: { fontWeight: 'bold' },
     }}>
-      <Tab.Screen name="US News" component={USNewsScreen} />
-      <Tab.Screen name="World News" component={WorldNewsScreen} />
-      <Tab.Screen name="Tech News" component={TechNewsScreen} />
+      <Tab.Screen name="Hardware" component={HardwareGuidesScreen} />
+      <Tab.Screen name="Software" component={SoftwareGuidesScreen} />
+      <Tab.Screen name="Purchase" component={PurchaseGuidesScreen} />
     </Tab.Navigator>
   );
 }
@@ -37,8 +38,9 @@ function DrawerNavigator() {
           headerTintColor: Colors.primary300,
           headerTitleStyle: { fontWeight: 'bold' }
     }}>
-      <Drawer.Screen name="Home" component={TabNavigator} />
-      <Drawer.Screen name="Bookmarked News" component={BookmarkedNewsScreen} />
+      <Drawer.Screen name="TechGuides" component={TabNavigator} />
+      <Drawer.Screen name="Bookmarked Guides" component={BookmarkedGuidesScreen} />
+      <Drawer.Screen name="Submit Guide" component={SubmitGuidesScreen} />
     </Drawer.Navigator>
   );
 }
@@ -58,9 +60,9 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="NewsDetail"
-          component={NewsDetailScreen}
-          options={{ title: 'News Detail' }}
+          name="GuidesDetail"
+          component={GuidesDetailScreen}
+          options={{ title: 'Guides Detail' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

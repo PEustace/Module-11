@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
-import { NEWS } from '../data/dummy_data';
+import { GUIDES } from '../data/dummy_data';
 import Colors from '../constants/Colors'
 import React, { useContext, useLayoutEffect } from 'react';
 import BookmarkButton from '../components/BookmarkButton';
@@ -8,23 +8,23 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function NewsDetailScreen({ route }) {
+export default function GuidesDetailScreen({ route }) {
   const navigation = useNavigation();
-  const { newsId } = route.params;
-  const news = NEWS.find(n => n.id === newsId);
+  const { guidesId } = route.params;
+  const guides = GUIDES.find(n => n.id === guidesId);
 
   const bookmarksCtx = useContext(BookmarksContext);
-  const isBookmarked = bookmarksCtx.ids.includes(newsId);
+  const isBookmarked = bookmarksCtx.ids.includes(guidesId);
 
   function toggleBookmarkHandler() {
     if (isBookmarked) {
-      bookmarksCtx.removeBookmark(newsId);
+      bookmarksCtx.removeBookmark(guidesId);
     } else {
-      bookmarksCtx.addBookmark(newsId);
+      bookmarksCtx.addBookmark(guidesId);
     }
   }
 
-  useLayoutEffect(() => {
+  /*useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <BookmarkButton
@@ -33,16 +33,16 @@ export default function NewsDetailScreen({ route }) {
         />
       ),
     });
-  }, [navigation, isBookmarked]);
+  }, [navigation, isBookmarked]);*/
 
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: news.imageUrl }} style={styles.image} />
-      <Text style={styles.title}>{news.headline}</Text>
-      <Text style={styles.info}>{news.date} | {news.agency}</Text>
-      <Text style={styles.author}>By {news.author}</Text>
-      <Text style={styles.desc}>{news.description}</Text>
+      <Image source={{ uri: guides.imageUrl }} style={styles.image} />
+      <Text style={styles.title}>{guides.headline}</Text>
+      <Text style={styles.info}>{guides.date} | {guides.agency}</Text>
+      <Text style={styles.author}>By {guides.author}</Text>
+      <Text style={styles.desc}>{guides.description}</Text>
     </ScrollView>
   );
 }

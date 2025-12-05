@@ -7,20 +7,20 @@ export const BookmarksContext = createContext({
 });
 
 function BookmarksContextProvider({ children }) {
-  const [bookmarkedNewsIds, setBookmarkedNewsIds] = useState([]);
+  const [bookmarkedGuideIds, setBookmarkedGuideIds] = useState([]);
 
   function addBookmark(id) {
-    setBookmarkedNewsIds((currentIds) => [...currentIds, id]);
+    setBookmarkedGuideIds((currentIds) => [...currentIds, id]);
   }
 
   function removeBookmark(id) {
-    setBookmarkedNewsIds((currentIds) =>
+    setBookmarkedGuideIds((currentIds) =>
       currentIds.filter((newsId) => newsId !== id)
     );
   }
 
   const value = {
-    ids: bookmarkedNewsIds,
+    ids: bookmarkedGuideIds,
     addBookmark: addBookmark,
     removeBookmark: removeBookmark,
   };
